@@ -1,0 +1,14 @@
+.box {
+    border: 2px solid var(--w-box-border-color, #000);
+    margin-bottom: 8px;
+    background-color: #efefef;
+}
+.box header, .box footer, .box section {
+    padding: 8px;
+}
+.box header {
+    background-color: var(--w-header-background-color, #999);
+}
+.box footer {
+    background-color: #999;
+}

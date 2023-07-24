@@ -1,0 +1,17 @@
+{
+    "name": "@warp/labs-elements-timer",
+    "type": "module",
+    "version": "0.0.1-next.1",
+    "description": "",
+    "exports": "./src/timer.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+      "@warp/labs-elements-core": "0.0.1-next.1",
+      "lit": "2.7.6"
+    }
+  }
+  

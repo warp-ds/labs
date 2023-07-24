@@ -1,0 +1,4 @@
+/* :host needs for variables to work inside web component without being included in document */
+html, :host  {
+    --w-header-background-color: green;
+}

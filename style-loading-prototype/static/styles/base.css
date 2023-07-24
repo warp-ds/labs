@@ -1,0 +1,14 @@
+/* https://web.dev/font-best-practices/ */
+
+@font-face {
+    font-family: 'IndieFlower-Regular';
+    font-style: normal;
+    font-weight: 400;
+    font-display: optional;
+    src: url('/_/static/fonts/IndieFlower-Regular.ttf');
+}
+
+body {
+    font-family: "IndieFlower-Regular", serif;
+    line-height: 1.5em;
+}
