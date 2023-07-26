@@ -1,0 +1,23 @@
+{
+  "name": "warp-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "unocss ./server.js -c uno.config.js -o dist/styles.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.20.0"
+  },
+  "devDependencies": {
+    "@warp-ds/uno": "^0.0.15",
+    "unocss": "^0.53.6",
+    "vite": "^4.4.7"
+  }
+}
