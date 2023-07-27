@@ -1,18 +1,29 @@
 import { LitElement, css, unsafeCSS, isServer } from "lit";
 
+const getBrand = (host = '') => {
+    if (host.toLocaleLowerCase().includes('blocket.se')) return 'blocket';
+    if (host.toLocaleLowerCase().includes('tori.fi')) return 'tori';
+    if (host.toLocaleLowerCase().includes('finn.no')) return 'finn';
+    if (host.toLocaleLowerCase().includes('dba.dk')) return 'dba';
+    return 'brand';
+}
+
 let brandCss = '';
 let baseCss = '';
+let brand = '';
 
 if (isServer) {
-    brandCss = unsafeCSS`@import url("http://localhost:3000/_/static/styles/brand.css");`;
-    baseCss = unsafeCSS`@import url("http://localhost:3000/_/static/styles/base.css");`;
+    brand = getBrand('localhost'); // can be picked from the host object on the server request or from a config
+    brandCss = unsafeCSS(`@import url("http://localhost:3000/_/static/styles/${brand}.css");`);
+    baseCss = unsafeCSS(`@import url("http://localhost:3000/_/static/styles/base.css");`);
 } else {
     brandCss = new CSSStyleSheet();
     baseCss = new CSSStyleSheet();
+    brand = getBrand(window?.location?.host);
 
     const response = await Promise.all([
-        fetch('http://localhost:3000/_/static/styles/brand.css'),
-        fetch('http://localhost:3000/_/static/styles/base.css'),
+        fetch(`http://localhost:3000/_/static/styles/${brand}.css`),
+        fetch(`http://localhost:3000/_/static/styles/base.css`),
     ]);
 
     brandCss.replaceSync(await response[0].text());
@@ -25,6 +36,8 @@ if (isServer) {
 // import styles from 'http://localhost:3000/styles/base.css' assert {type: 'css'};
 
 // console.log(stylesheet);
+
+
 
 export default class WarpElement extends LitElement {
     static styles = [
