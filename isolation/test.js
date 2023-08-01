@@ -1,12 +1,12 @@
 import test from "node:test";
-import { strictEqual, match } from "node:assert";
+import { strictEqual } from "node:assert";
+import assertSnapshot from "snapshot-assertion";
 import { chromium } from 'playwright';
 import { isolate } from "./index.js";
 
-test("isolate() returns a string with correct values", () => {
+test("isolate() returns a string with correct values", async () => {
   const result = isolate(
     "my-wrapped-component",
-    "finn",
     `<div>hello world</div>`,
     {
       styles: "div { background-color: red; }",
@@ -14,21 +14,10 @@ test("isolate() returns a string with correct values", () => {
   );
 
   strictEqual(typeof result, "string");
-  match(result, /<my-wrapped-component>/);
-  match(result, /<\/my-wrapped-component>/);
-  match(result, /<template shadowrootmode="open">/);
-  match(
-    result,
-    /<link rel="stylesheet" href="https:\/\/assets.finn.no\/pkg\/@warp-ds\/css\/v1\/resets.css">/
-  );
-  match(
-    result,
-    /<link rel="stylesheet" href="https:\/\/assets.finn.no\/pkg\/@warp-ds\/tokens\/v1\/finn-no.css">/
-  );
-  match(result, /<style>div { background-color: red; }<\/style>/);
-  match(result, /<div>hello world<\/div>/);
+  await assertSnapshot(result, "snapshots/isolate-1.snapshot");
 });
 
+/*
 test("isolate() returns a string with correct brand: tori", () => {
   const result = isolate("my-wrapped-component", "tori", `<div></div>`);
   match(
@@ -44,6 +33,7 @@ test("isolate() returns a string with correct brand: blocket", () => {
     /<link rel="stylesheet" href="https:\/\/assets.finn.no\/pkg\/@warp-ds\/tokens\/v1\/blocket-se.css">/
   );
 });
+*/
 
 test("isolate() renders correctly in chrome", async () => {
     const name = "test-app";
@@ -56,13 +46,18 @@ test("isolate() renders correctly in chrome", async () => {
     await page.setContent(
         `<html>
             <head><link rel="stylesheet" href="https://assets.finn.no/pkg/@warp-ds/tokens/v1/finn-no.css"></head>
-            <body style="margin:0;">${isolate(name, "finn", markup, options)}</body>
+            <body style="margin:0;">${isolate(name, markup, options)}</body>
         </html>`
     );
+
     await page.screenshot({
-        path: `./screenshots/chromium/finn.png`,
-        omitBackground: true,
+      path: `./screenshots/chromium/finn.png`,
+      omitBackground: false,
     });
+
+    await browser.close();
+
+    /*
     await page.setContent(
         `<html>
             <head><link rel="stylesheet" href="https://assets.finn.no/pkg/@warp-ds/tokens/v1/tori-fi.css"></head>
@@ -83,4 +78,5 @@ test("isolate() renders correctly in chrome", async () => {
         path: `./screenshots/chromium/blocket.png`,
         omitBackground: true,
     });
+    */
 });

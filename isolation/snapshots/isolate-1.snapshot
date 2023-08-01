@@ -1,0 +1,25 @@
+
+<style>my-wrapped-component:not(:defined) > template[shadowrootmode] ~ *  {opacity:0;visibility:hidden;}</style>
+<my-wrapped-component>
+  <template shadowrootmode="open">
+    <style>
+      @import url('https://assets.finn.no/pkg/@warp-ds/tokens/v1/finn-no.css');
+      @import url('https://assets.finn.no/pkg/@warp-ds/css/v1/resets.css');
+      div { background-color: red; }
+    </style>
+    <div>hello world</div>
+  </template>
+</my-wrapped-component>
+<script>
+  (function attachShadowRoots(root) {
+    if (!HTMLTemplateElement.prototype.hasOwnProperty('shadowRootMode')) {
+      root.querySelectorAll("template[shadowrootmode]").forEach(template => {
+        const mode = template.getAttribute("shadowrootmode");
+        const shadowRoot = template.parentNode.attachShadow({ mode });
+        shadowRoot.appendChild(template.content);
+        template.remove();
+        attachShadowRoots(shadowRoot);
+      });
+    }
+  })(document.currentScript.previousElementSibling);
+</script>
