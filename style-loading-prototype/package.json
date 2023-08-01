@@ -20,8 +20,8 @@
     "@fastify/etag": "4.2.0",
     "@fastify/static": "6.10.2",
     "chokidar": "3.5.3",
-    "esbuild": "0.18.15",
-    "fastify": "4.20.0",
+    "esbuild": "0.18.17",
+    "fastify": "4.21.0",
     "fastify-plugin": "4.5.1",
     "mime": "3.0.0",
     "ws": "8.13.0"
@@ -29,6 +29,6 @@
   "dependencies": {
     "@lit-labs/ssr": "3.1.5",
     "esbuild-plugin-import-map": "3.0.0-next.2",
-    "@warp-ds/elements-core": "0.0.1-alpha.1"
+    "@warp-ds/elements-core": "0.0.1-alpha.2"
   }
 }
