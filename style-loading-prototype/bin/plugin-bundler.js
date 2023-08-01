@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url);
 
 importMap.load('http://localhost:3000', {
     imports: {
-        '../../core/src/core.js': '/_/dynamic/elements/core.js',
+        '@warp-ds/elements-core': '/_/dynamic/modules/@warp-ds/elements-core/element.js',
         'lit': '/_/dynamic/modules/lit'
     }
 });

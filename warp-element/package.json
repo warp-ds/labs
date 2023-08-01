@@ -6,7 +6,9 @@
   "main": "./src/element.js",
   "exports": {
     ".": "./src/element.js",
-    "./utils": "./src/utils.js"
+    "./element.js": "./src/element.js",
+    "./global.js": "./src/global.js",
+    "./utils.js": "./src/utils.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

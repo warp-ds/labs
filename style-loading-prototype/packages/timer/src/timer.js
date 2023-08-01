@@ -1,5 +1,5 @@
 // This is import mapped to "http://localhost:3000/core/js/element.js"; for the client side when built
-import WarpElement from "../../core/src/core.js";
+import WarpElement from "@warp-ds/elements-core";
 import { html, css } from "lit";
 import { play, pause, replay } from "./icons.js";
 

@@ -18,13 +18,13 @@ const document = (body) => {
                 <meta charset="utf-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1">
                 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-                <link rel="preload" href="/_/static/fonts/IndieFlower-Regular.ttf" as="font" type="font/ttf" crossorigin>
+                <link rel="preload" href="https://assets.finn.no/pkg/@warp-ds/fonts/1.1.0/FINNTypeStrippet-Light.woff2" as="font" type="font/woff2" crossorigin>
                 <script src="/_/dynamic/modules/@lit-labs/ssr-client/lit-element-hydrate-support.js" type="module"></script>
                 <script src="/_/dynamic/elements/button.js" type="module"></script>
                 <script src="/_/dynamic/elements/timer.js" type="module"></script>
                 <script src="/_/dynamic/elements/card.js" type="module"></script>
-                <link href="/_/static/styles/brand.css" rel="stylesheet" type="text/css">
-                <link href="/_/static/styles/base.css" rel="stylesheet" type="text/css">
+                <link href="https://assets.finn.no/pkg/@warp-ds/tokens/v1/finn-no.css" rel="stylesheet" type="text/css">
+                <link href="https://assets.finn.no/pkg/@warp-ds/css/v1/resets.css" rel="stylesheet" type="text/css">
                 <link href="/_/static/styles/document.css" rel="stylesheet" type="text/css">
                 <script src="/_/live/client" type="module" defer></script>
                 <!-- 

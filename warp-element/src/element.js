@@ -1,12 +1,9 @@
 import { PodiumElement } from '@podium/element';
-import { getBrand, getGlobalStyles } from './utils.js';
-
-const brandInfo = getBrand();
-const globalCss = await getGlobalStyles(brandInfo);
+import { styles } from './global.js';
 
 export default class WarpElement extends PodiumElement {    
     static styles = [
-        ...globalCss,
+        ...styles,
     ];
 
     constructor() {
