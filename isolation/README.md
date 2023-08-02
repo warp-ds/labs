@@ -1,17 +1,17 @@
-# @warp/isolate
+# @warp-ds/isolate
 
 A package to isolate sections of a page with SSR shadow DOM (via [DSD](https://developer.chrome.com/en/articles/declarative-shadow-dom/)) and Warp support. Includes ponyfill for browsers that don't support DSD natively.
 
 ## Install
 
 ```
-npm install @warp/isolate
+npm install @warp-ds/isolate
 ```
 
 ## Basic Usage
 
 ```js
-import { isolate } from "@warp/isolate";
+import { isolate } from "@warp-ds/isolate";
 
 const name = "my-isolated-content";
 const brand = "finn"; // or "tori" or "blocket"
