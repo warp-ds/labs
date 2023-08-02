@@ -14,14 +14,13 @@ npm install @warp-ds/isolate
 import { isolate } from "@warp-ds/isolate";
 
 const name = "my-isolated-content";
-const brand = "finn"; // or "tori" or "blocket"
 const markup = "<div>here is some markup to isolate</div>"; // can even be React SSR'd string
 const options = {
   styles: "div { background-color: red; }", // purged Warp styles go here,
   mode: "open", // or "closed". Defaults to "open" and unless you have good reason, leave it that way.
 };
 
-const result = isolate(name, brand, markup, options);
+const result = isolate(name, markup, options);
 // respond with "result" from your HTTP server.
 ```
 
@@ -55,10 +54,9 @@ const __dirname = new URL(".", import.meta.url).pathname;
 const styles = await fs.readFile(join(__dirname, "dist/styles.css"), "utf-8");
 
 const name = "my-warp-app";
-const brand = "finn"; // or "tori" or "blocket"
 const markup = `<div class="p-4">Hello World</div>`;
 const options = { styles };
-const result = isolate(name, brand, markup, options);
+const result = isolate(name, markup, options);
 
 // respond with "result" from your HTTP server.
 ```
@@ -71,13 +69,12 @@ See the examples/warp folder for a more complete working setup.
 
 ```js
 import ReactDOMServer from "react-dom/server";
-import { isolate } from "@warp/isolate";
+import { isolate } from "@warp-ds/isolate";
 import App from "./app.jsx";
 
 const name = "my-ssr-react-app";
-const brand = "finn"; // or "tori" or "blocket"
 const markup = `<div id="root">${ReactDOMServer.renderToString(<App />)}</div>`;
-const result = isolate(name, brand, `<div id="root">${app}</div>`);
+const result = isolate(name, `<div id="root">${app}</div>`);
 
 // respond with "result" from your HTTP server.
 ```
