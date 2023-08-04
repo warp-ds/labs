@@ -46,6 +46,7 @@ export const loadStyles = async (urls = []) => {
 export const getGlobalStyles = async (brand = {}) => {
     const { sld, tld } = brand;
     const urls = [
+        `https://assets.finn.no/pkg/@warp-ds/fonts/v1/${sld}-${tld}.min.css`,
         `https://assets.finn.no/pkg/@warp-ds/tokens/v1/${sld}-${tld}.css`,
         `https://assets.finn.no/pkg/@warp-ds/css/v1/resets.css`,
     ];
