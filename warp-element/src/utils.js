@@ -1,10 +1,10 @@
 import { unsafeCSS } from 'lit';
 
-export const isServer = () => {
+const isServer = () => {
     return !(typeof window !== 'undefined');
 };
 
-export const parseBrand = (str = '') => {
+const parseBrand = (str = '') => {
     if (str.toLocaleLowerCase().includes('blocket')) return { sld: 'blocket', tld: 'se' };
     if (str.toLocaleLowerCase().includes('tori')) return { sld: 'tori', tld: 'fi' };
     if (str.toLocaleLowerCase().includes('finn')) return { sld: 'finn', tld: 'no' };
@@ -12,6 +12,11 @@ export const parseBrand = (str = '') => {
     return { sld: 'finn', tld: 'no' };
 };
 
+
+/*
+ * @param {string} [brandStr] - a string with brand information
+ * @returns {import("./global.js").Brand} brand object
+ */
 export const getBrand = (brandStr = '') => {
     if (brandStr === '') return parseBrand(brandStr);
     if (window?.location?.host) return parseBrand(window.location.host);
@@ -19,9 +24,9 @@ export const getBrand = (brandStr = '') => {
     return parseBrand();
 };
 
-export const loadStyles = async (urls = []) => {
+const loadStyles = async (urls = []) => {
     const server = isServer();
-    
+
     if (server) {
         return urls.map((style) => {
             return unsafeCSS(`@import url('${style}');`);
@@ -42,8 +47,12 @@ export const loadStyles = async (urls = []) => {
         return sheet;
     });
 };
-
-export const getGlobalStyles = async (brand = {}) => {
+/**
+ *
+ * @param {import("./global.js").Brand} brand - target brand
+ * @returns {Promise<import("./global.js").Styles>} CSS style information
+ */
+export const getGlobalStyles = async (brand) => {
     const { sld, tld } = brand;
     const urls = [
         `https://assets.finn.no/pkg/@warp-ds/tokens/v1/${sld}-${tld}.css`,
