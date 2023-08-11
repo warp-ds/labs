@@ -18,9 +18,9 @@ const parseBrand = (str = '') => {
  * @returns {import("./global.js").Brand} brand object
  */
 export const getBrand = (brandStr = '') => {
-    if (brandStr === '') return parseBrand(brandStr);
-    if (window?.location?.host) return parseBrand(window.location.host);
-    if (process?.env?.BRAND) return parseBrand(process.env.BRAND);
+    if (brandStr !== '') return parseBrand(brandStr);
+    if (!isServer && window?.location?.host) return parseBrand(window.location.host);
+    if (process?.env?.NMP_BRAND) return parseBrand(process.env.NMP_BRAND);
     return parseBrand();
 };
 
