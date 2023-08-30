@@ -19,8 +19,8 @@ const parseBrand = (str = '') => {
  */
 export const getBrand = (brandStr = '') => {
     if (brandStr !== '') return parseBrand(brandStr);
-    if (!isServer && window?.location?.host) return parseBrand(window.location.host);
-    if (process?.env?.NMP_BRAND) return parseBrand(process.env.NMP_BRAND);
+    if (!isServer() && window?.location?.host) return parseBrand(window.location.host);
+    if (isServer() && process?.env?.NMP_BRAND) return parseBrand(process.env.NMP_BRAND);
     return parseBrand();
 };
 
