@@ -37,7 +37,14 @@ const loadStyles = async (urls = []) => {
     });
   }
 
-  await import("construct-style-sheets-polyfill");
+  // only load polyfill if needed, and only client side.
+  const supportsAdoptingStyleSheets =
+    "adoptedStyleSheets" in Document.prototype &&
+    "replace" in CSSStyleSheet.prototype;
+
+  if (!supportsAdoptingStyleSheets) {
+    await import("construct-style-sheets-polyfill");
+  }
 
   const requests = await Promise.all(
     urls.map((url) => {
