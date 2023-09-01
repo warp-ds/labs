@@ -1,12 +1,10 @@
-import { PodiumElement } from '@podium/element';
-import { styles } from './global.js';
+import { PodiumElement } from "@podium/element";
+import { styles } from "./global.js";
 
-export default class WarpElement extends PodiumElement {    
-    static styles = [
-        ...styles,
-    ];
+export default class WarpElement extends PodiumElement {
+  static styles = [...styles];
 
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+  }
 }

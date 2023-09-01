@@ -4,23 +4,35 @@
   "version": "0.0.1-alpha.4",
   "description": "",
   "main": "./src/element.js",
+	"files": [
+		"./src",
+		"./dist",
+		"README.md"
+	],
   "exports": {
-    ".": "./src/element.js",
-    "./element.js": "./src/element.js",
-    "./global.js": "./src/global.js",
-    "./utils.js": "./src/utils.js"
+    ".": "./dist/element.js",
+    "./element.js": "./dist/element.js",
+    "./global.js": "./dist/global.js",
+    "./utils.js": "./dist/utils.js"
   },
   "scripts": {
-    "jsdoc": "tsc"
+    "jsdoc": "tsc",
+    "build": "rollup -c",
+    "prepublish": "npm run build"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@podium/element": "1.0.8",
+    "construct-style-sheets-polyfill": "3.1.0",
     "lit": "2.7.6"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.4",
+    "@rollup/plugin-node-resolve": "^15.2.1",
+    "@rollup/plugin-terser": "^0.4.3",
     "@types/node": "^20.4.7",
+    "rollup": "^3.28.1",
     "typescript": "^5.1.6"
   }
 }
