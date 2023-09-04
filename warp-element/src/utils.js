@@ -43,7 +43,7 @@ const loadStyles = async (urls = []) => {
     "replace" in CSSStyleSheet.prototype;
 
   if (!supportsAdoptingStyleSheets) {
-    await import("construct-style-sheets-polyfill");
+    await import("https://assets.finn.no/npm/construct-style-sheets-polyfill/3.1.0/polyfill.js");
   }
 
   const requests = await Promise.all(
