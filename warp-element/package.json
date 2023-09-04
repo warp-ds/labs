@@ -4,6 +4,10 @@
   "version": "0.0.1-alpha.4",
   "description": "",
   "main": "./src/element.js",
+	"files": [
+		"./src",
+		"README.md"
+	],
   "exports": {
     ".": "./src/element.js",
     "./element.js": "./src/element.js",

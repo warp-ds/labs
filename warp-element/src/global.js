@@ -1,4 +1,4 @@
-import { getBrand, getGlobalStyles } from './utils.js';
+import { getBrand, getGlobalStyles } from "./utils.js";
 
 /**
  * Returns a Brand object with top level- and
