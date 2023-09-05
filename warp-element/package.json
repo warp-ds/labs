@@ -1,13 +1,13 @@
 {
   "name": "@warp-ds/elements-core",
   "type": "module",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.1-alpha.5",
   "description": "",
   "main": "./src/element.js",
-	"files": [
-		"./src",
-		"README.md"
-	],
+  "files": [
+    "./src",
+    "README.md"
+  ],
   "exports": {
     ".": "./src/element.js",
     "./element.js": "./src/element.js",
