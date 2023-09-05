@@ -10,16 +10,5 @@
     <div>hello world</div>
   </template>
 </my-wrapped-component>
-<script>
-  (function attachShadowRoots(root) {
-    if (!HTMLTemplateElement.prototype.hasOwnProperty('shadowRootMode')) {
-      root.querySelectorAll("template[shadowrootmode]").forEach(template => {
-        const mode = template.getAttribute("shadowrootmode");
-        const shadowRoot = template.parentNode.attachShadow({ mode });
-        shadowRoot.appendChild(template.content);
-        template.remove();
-        attachShadowRoots(shadowRoot);
-      });
-    }
-  })(document.currentScript.previousElementSibling);
+<script>!function(){"use strict";document.currentScript?.previousElementSibling&&function e(t){HTMLTemplateElement.prototype.hasOwnProperty("shadowRootMode")||t.querySelectorAll("template[shadowrootmode]").forEach((t=>{const o=t.getAttribute("shadowrootmode"),r=t.hasAttribute("shadowrootdelegatesfocus"),n=t.parentNode.attachShadow({mode:o,delegatesFocus:r});n.appendChild(t.content),t.remove(),e(n)}))}(document.currentScript.previousElementSibling)}();
 </script>
