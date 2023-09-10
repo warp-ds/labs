@@ -1,6 +1,4 @@
-import { unsafeCSS } from "lit";
-
-const isServer = () => {
+export const isServer = () => {
   return !(typeof window !== "undefined");
 };
 
@@ -15,7 +13,7 @@ const parseBrand = (str = "") => {
   return { sld: "finn", tld: "no" };
 };
 
-/*
+/**
  * @param {string} [brandStr] - a string with brand information
  * @returns {import("./global.js").Brand} brand object
  */
@@ -28,13 +26,21 @@ export const getBrand = (brandStr = "") => {
   return parseBrand();
 };
 
+class StyleLoadResult {
+  isServer = false;
+  css = "";
+}
+
 const loadStyles = async (urls = []) => {
+  const loadResult = new StyleLoadResult();
   const server = isServer();
 
   if (server) {
-    return urls.map((style) => {
-      return unsafeCSS(`@import url('${style}');`);
-    });
+    for (const url of urls) {
+      loadResult.css += `@import url('${url}');`;
+    }
+    loadResult.isServer = true;
+    return loadResult;
   }
 
   // only load polyfill if needed, and only client side.
@@ -55,22 +61,22 @@ const loadStyles = async (urls = []) => {
     })
   );
 
-  const sheets = await Promise.all(
+  const cssResult = await Promise.all(
     requests.map((response) => {
       return response.text();
     })
   );
 
-  return sheets.map((style) => {
-    const sheet = new CSSStyleSheet();
-    sheet.replaceSync(style);
-    return sheet;
-  });
+  for (const sheet of cssResult) {
+    loadResult.css += sheet;
+  }
+
+  return loadResult;
 };
 /**
  *
  * @param {import("./global.js").Brand} brand - target brand
- * @returns {Promise<import("./global.js").Styles>} CSS style information
+ * @returns {Promise<StyleLoadResult>} CSS stylesheets as strings
  */
 export const getGlobalStyles = async (brand) => {
   const { sld, tld } = brand;
