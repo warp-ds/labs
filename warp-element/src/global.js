@@ -1,4 +1,5 @@
-import { getBrand, getGlobalStyles } from "./utils.js";
+import { CSSResult, unsafeCSS } from "lit";
+import { getBrand, getGlobalStyles, isServer } from "./utils.js";
 
 /**
  * Returns a Brand object with top level- and
@@ -12,7 +13,34 @@ import { getBrand, getGlobalStyles } from "./utils.js";
  */
 
 const brand = getBrand();
+
 /**
- * @typedef {CSSStyleSheet[] | import("@lit/reactive-element").CSSResult[]} Styles
+ * Styles object compatible with LitElement.
+ * On the server side, this will a CSSResult object while client side
+ * it will be a CSSStyleSheet object.
+ * @see https://lit.dev/docs/components/styles/#cssresult
+ *
+ * @type {CSSStyleSheet | CSSResult}
  */
-export const styles = await getGlobalStyles(brand);
+let styles = new CSSStyleSheet();
+
+if (isServer()) {
+  const sheets = await getGlobalStyles(brand);
+  styles = unsafeCSS(sheets.css);
+} else {
+  try {
+    // block on fetching styles. This will throw in older browsers that don't support top level await
+    const sheets = await getGlobalStyles(brand);
+    styles.replaceSync(sheets.css);
+  } catch (err) {
+    // fallback for older browsers that don't support top level await
+    // generates some FOUC but much better than an error.
+    getGlobalStyles(brand).then((sheets) => {
+      // I don't understand why TS can't infer this. Theres no possible way I can see that at this point
+      // styles is not a CSSStyleSheet object. Maybe it's because its async?
+      /** @type {CSSStyleSheet} */ (styles).replaceSync(sheets.css);
+    });
+  }
+}
+
+export { styles };
