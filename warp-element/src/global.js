@@ -22,12 +22,13 @@ const brand = getBrand();
  *
  * @type {CSSStyleSheet | CSSResult}
  */
-let styles = new CSSStyleSheet();
+let styles;
 
 if (isServer()) {
   const sheets = await getGlobalStyles(brand);
   styles = unsafeCSS(sheets.css);
 } else {
+  styles = new CSSStyleSheet();
   try {
     // block on fetching styles. This will throw in older browsers that don't support top level await
     const sheets = await getGlobalStyles(brand);
