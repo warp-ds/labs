@@ -43,18 +43,6 @@ const loadStyles = async (urls = []) => {
     return loadResult;
   }
 
-  // only load polyfill if needed, and only client side.
-  const supportsAdoptingStyleSheets =
-    "adoptedStyleSheets" in Document.prototype &&
-    "replace" in CSSStyleSheet.prototype;
-
-  if (!supportsAdoptingStyleSheets) {
-    await import(
-      // @ts-ignore
-      "https://assets.finn.no/npm/construct-style-sheets-polyfill/3.1.0/polyfill.js"
-    );
-  }
-
   const requests = await Promise.all(
     urls.map((url) => {
       return fetch(url);
