@@ -1,5 +1,6 @@
 import { CSSResult, unsafeCSS } from "lit";
 import { getBrand, getGlobalStyles, isServer } from "./utils.js";
+import "construct-style-sheets-polyfill";
 
 /**
  * Returns a Brand object with top level- and
