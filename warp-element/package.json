@@ -15,7 +15,10 @@
     "./utils.js": "./src/utils.js"
   },
   "scripts": {
-    "jsdoc": "tsc"
+    "jsdoc": "tsc",
+    "build": "node esbuild.js",
+    "prepublishOnly": "npm run build",
+    "postpublish": "eik login && eik publish"
   },
   "author": "",
   "license": "MIT",
@@ -25,7 +28,16 @@
     "lit": "2.7.6"
   },
   "devDependencies": {
+    "@eik/cli": "^2.0.22",
+    "@eik/esbuild-plugin": "^1.1.36",
     "@types/node": "^20.4.7",
+    "esbuild": "^0.19.3",
     "typescript": "^5.1.6"
+  },
+  "eik": {
+    "server": "https://assets.finn.no",
+    "files": "./dist",
+		"import-map": "https://assets.finn.no/map/custom-elements/v2"
   }
 }
+
