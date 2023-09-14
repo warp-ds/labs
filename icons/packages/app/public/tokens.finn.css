@@ -1,0 +1,4 @@
+:root {
+    --box-border-color: rgb(39, 119, 165);
+    --icon-background: url(http://localhost:5000/api/finn/circle/100/100/icon.svg);
+}

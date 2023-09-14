@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="100mm"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   sodipodi:docname="master.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.64052329"
+     inkscape:cx="397.33138"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1920"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+   <defs id="defs2">
+      <style>
+         .item {
+               fill: var(--item-fill-color, grey);
+               stroke: black;
+               stroke-width: 2px;
+         }
+      </style>
+   </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="star"
+       class="item"
+       id="path1480"
+       inkscape:flatsided="true"
+       sodipodi:sides="3"
+       sodipodi:cx="242.78194"
+       sodipodi:cy="279.96115"
+       sodipodi:r1="279.96191"
+       sodipodi:r2="139.98096"
+       sodipodi:arg1="-1.5684497"
+       sodipodi:arg2="-0.52125212"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="M 243.4389,7.8873541e-6 484.90692,420.51067 -8.232207e-6,419.37277 Z"
+       transform="matrix(0.20622514,0,0,0.2378061,-6.5345189e-6,6.0116932e-6)" />
+  </g>
+</svg>
