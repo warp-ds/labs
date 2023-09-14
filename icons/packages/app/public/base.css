@@ -1,0 +1,19 @@
+body {
+    background-color: beige;
+}
+
+section {
+    border: 4px solid var(--box-border-color, black);
+    width: 400px;
+    height: 200px;
+    padding: 5px;
+}
+
+
+.icon {
+    background: var(--icon-background);
+    background-size: 100px 100px;
+    height: 100px;
+    width: 100px;
+    display: block;
+}
