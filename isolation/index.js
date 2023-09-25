@@ -17,12 +17,10 @@ export function isolate(name, markup, options) {
   assert(/[a-z][a-z-]*/.test(name), "name must match expected pattern");
   assert(typeof markup === "string", "markup must be a string");
 
-  const css = styles.map((style) => {
-    return `\n      ${style.cssText}`;
-  });
+  const css = [styles.cssText];
 
   if (options?.styles) {
-    css.push(`\n      ${options.styles}`);
+    css.push(options.styles);
   }
 
   return wrap(name, `<style>${css.join('')}\n    </style>\n    ${markup}`, {
