@@ -2,10 +2,7 @@
 <style>my-wrapped-component:not(:defined) > template[shadowrootmode] ~ *  {opacity:0;visibility:hidden;}</style>
 <my-wrapped-component>
   <template shadowrootmode="open">
-    <style>
-      @import url('https://assets.finn.no/pkg/@warp-ds/tokens/v1/finn-no.css');
-      @import url('https://assets.finn.no/pkg/@warp-ds/css/v1/resets.css');
-      div { background-color: red; }
+    <style>@import url('https://assets.finn.no/pkg/@warp-ds/fonts/v1/finn-no.css');@import url('https://assets.finn.no/pkg/@warp-ds/css/v1/tokens/finn-no.css');@import url('https://assets.finn.no/pkg/@warp-ds/css/v1/resets.css');div { background-color: red; }
     </style>
     <div>hello world</div>
   </template>
