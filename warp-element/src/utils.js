@@ -72,6 +72,7 @@ export const getGlobalStyles = async (brand) => {
     `https://assets.finn.no/pkg/@warp-ds/fonts/v1/${sld}-${tld}.css`,
     `https://assets.finn.no/pkg/@warp-ds/css/v1/tokens/${sld}-${tld}.css`,
     `https://assets.finn.no/pkg/@warp-ds/css/v1/resets.css`,
+    `https://assets.finn.no/pkg/@warp-ds/css/v1/components.css`,
   ];
   return await loadStyles(urls);
 };
