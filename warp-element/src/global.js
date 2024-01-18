@@ -1,5 +1,5 @@
 import { CSSResult, unsafeCSS } from "lit";
-import { getBrand, getGlobalStyles, isServer } from "./utils.js";
+import {getBrand, getGlobalStyles, getGlobalStylesSync, isServer} from "./utils.js";
 import "construct-style-sheets-polyfill";
 
 /**
@@ -31,17 +31,22 @@ if (isServer()) {
 } else {
   styles = new CSSStyleSheet();
   try {
+    const UA = window.navigator.userAgent;
+    // @ts-ignore
+    const isWebkit = /WebKit/.test(UA) && !/Chrome/.test(UA) && !/Edg/.test(UA) && !window.MSStream;
+    if (isWebkit) {
+      // We do this because Safari does not always throw when this happens.
+      // As is mentioned in this bug https://bugs.webkit.org/show_bug.cgi?id=242740, which leads to
+      // Safari in certain cases stopping JS execution.
+      throw new Error("DoesNotSupportTopLevelAwait")
+    }
     // block on fetching styles. This will throw in older browsers that don't support top level await
     const sheets = await getGlobalStyles(brand);
     styles.replaceSync(sheets.css);
   } catch (err) {
-    // fallback for older browsers that don't support top level await
-    // generates some FOUC but much better than an error.
-    getGlobalStyles(brand).then((sheets) => {
-      // I don't understand why TS can't infer this. Theres no possible way I can see that at this point
-      // styles is not a CSSStyleSheet object. Maybe it's because its async?
-      /** @type {CSSStyleSheet} */ (styles).replaceSync(sheets.css);
-    });
+    // we do a synchronous call for browsers which don't suppoert top-level await
+    const sheets = getGlobalStylesSync(brand);
+    styles.replaceSync(sheets.css);
   }
 }
 
