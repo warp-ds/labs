@@ -1,7 +1,7 @@
 {
   "name": "@warp-ds/elements-core",
   "type": "module",
-  "version": "0.0.1-alpha.10",
+  "version": "0.0.1-alpha.11",
   "description": "",
   "main": "./src/element.js",
   "files": [
@@ -9,6 +9,7 @@
     "types",
     "README.md"
   ],
+  "types": "./index.d.ts",
   "exports": {
     ".": {
       "import": "./src/element.js",
@@ -30,7 +31,7 @@
   "scripts": {
     "jsdoc": "tsc",
     "build": "node esbuild.js",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run jsdoc && npm run build",
     "postpublish": "eik login && eik publish"
   },
   "author": "",
