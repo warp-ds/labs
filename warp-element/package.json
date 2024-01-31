@@ -6,8 +6,10 @@
   "main": "./src/element.js",
   "files": [
     "./src",
+    "index.d.ts",
     "README.md"
   ],
+  "types": "./index.d.ts",
   "exports": {
     ".": "./src/element.js",
     "./element.js": "./src/element.js",
@@ -17,7 +19,7 @@
   "scripts": {
     "jsdoc": "tsc",
     "build": "node esbuild.js",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "npm run jsdoc && npm run build",
     "postpublish": "eik login && eik publish"
   },
   "author": "",
