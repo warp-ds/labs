@@ -9,7 +9,6 @@
     "types",
     "README.md"
   ],
-  "types": "./index.d.ts",
   "exports": {
     ".": {
       "import": "./src/element.js",
