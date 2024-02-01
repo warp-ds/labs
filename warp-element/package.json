@@ -6,15 +6,26 @@
   "main": "./src/element.js",
   "files": [
     "./src",
-    "index.d.ts",
+    "types",
     "README.md"
   ],
-  "types": "./index.d.ts",
   "exports": {
-    ".": "./src/element.js",
-    "./element.js": "./src/element.js",
-    "./global.js": "./src/global.js",
-    "./utils.js": "./src/utils.js"
+    ".": {
+      "import": "./src/element.js",
+      "types": "./types/element.d.ts"
+    },
+    "./element.js": {
+      "import": "./src/element.js",
+      "types": "./types/element.d.ts"
+    },
+    "./global.js": {
+      "import": "./src/global.js",
+      "types": "./types/global.d.ts"
+    },
+    "./utils.js": {
+      "import": "./src/utils.js",
+      "types": "./types/utils.d.ts"
+    }
   },
   "scripts": {
     "jsdoc": "tsc",
