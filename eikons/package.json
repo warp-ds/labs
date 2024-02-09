@@ -1,0 +1,21 @@
+{
+  "name": "eikons",
+  "version": "0.0.1-alpha.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publish": "eik login && eik publish"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "eik": {
+    "server": "https://assets.finn.no",
+    "type": "package",
+    "files": "./svg"
+  },
+  "devDependencies": {
+    "@eik/cli": "^2.0.32"
+  }
+}
