@@ -5,3 +5,5 @@ yarn-error.log
 .nyc_output/
 dist
 warp-element/types
+warp-element/index.d.ts
+eikons/.eik/
