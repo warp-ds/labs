@@ -1,5 +1,10 @@
-import { CSSResult, unsafeCSS } from "lit";
-import {getBrand, getGlobalStyles, getGlobalStylesSync, isServer} from "./utils.js";
+import { unsafeCSS } from "lit";
+import {
+  getBrand,
+  getGlobalStyles,
+  getGlobalStylesSync,
+  isServer,
+} from "./utils.js";
 import "construct-style-sheets-polyfill";
 
 /**
@@ -21,7 +26,7 @@ const brand = getBrand();
  * it will be a CSSStyleSheet object.
  * @see https://lit.dev/docs/components/styles/#cssresult
  *
- * @type {CSSStyleSheet | CSSResult}
+ * @type {(import("lit").CSSResultGroup | import("lit").CSSResult | import("lit").CSSResultOrNative | import("lit").CSSResultArray)}
  */
 let styles;
 
@@ -33,12 +38,17 @@ if (isServer()) {
   try {
     const UA = window.navigator.userAgent;
     // @ts-ignore
-    const isWebkit = /WebKit/.test(UA) && !/Chrome/.test(UA) && !/Edg/.test(UA) && !window.MSStream;
+    const isWebkit =
+      /WebKit/.test(UA) &&
+      !/Chrome/.test(UA) &&
+      !/Edg/.test(UA) &&
+      // @ts-expect-error
+      !window.MSStream;
     if (isWebkit) {
       // We do this because Safari does not always throw when this happens.
       // As is mentioned in this bug https://bugs.webkit.org/show_bug.cgi?id=242740, which leads to
       // Safari in certain cases stopping JS execution.
-      throw new Error("DoesNotSupportTopLevelAwait")
+      throw new Error("DoesNotSupportTopLevelAwait");
     }
     // block on fetching styles. This will throw in older browsers that don't support top level await
     const sheets = await getGlobalStyles(brand);
