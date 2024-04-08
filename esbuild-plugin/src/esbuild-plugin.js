@@ -2,16 +2,22 @@ import { parse } from "path";
 import { readFile } from "fs/promises";
 import * as lightning from "lightningcss";
 import { createGenerator } from "@unocss/core";
+import { classes } from "@warp-ds/css/component-classes/classes";
 import { presetWarp } from "@warp-ds/uno";
 
 
 /**
  * This ES Build plugin ensures that the Web Component in this project
  * gets injected the CSS from the Design system - WARP.
- *
- * In the
  */
-const uno = createGenerator({ presets: [presetWarp()] });
+const uno = createGenerator({
+  presets: [
+    presetWarp({
+      externalClasses: classes,
+      skipResets: true,
+    }),
+  ],
+});
 
 /**
  * Utility function which returns a minified CSS for injection into Web Components.
