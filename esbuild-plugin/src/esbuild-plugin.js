@@ -1,10 +1,12 @@
 import { parse } from "path";
 import { readFile } from "fs/promises";
-import * as lightning from "lightningcss";
 import { createGenerator } from "@unocss/core";
 import { classes } from "@warp-ds/css/component-classes/classes";
 import { presetWarp } from "@warp-ds/uno";
+import browserslist from "browserslist";
+import * as lightning from "lightningcss";
 
+const targets = lightning.browserslistToTargets(browserslist("supports es6-module and > 0.25% in NO and not dead"))
 
 /**
  * This ES Build plugin ensures that the Web Component in this project
@@ -33,10 +35,7 @@ async function buildCSS(content) {
 	const { code: minified } = lightning.transform({
 		code: Buffer.from(css),
 		minify: true,
-		targets: {
-			// eslint-disable-next-line no-bitwise
-			safari: 13 << 16,
-		},
+		targets,
 	});
 	return minified;
 }
