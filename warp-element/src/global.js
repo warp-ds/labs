@@ -42,6 +42,7 @@ if (isServer()) {
       /WebKit/.test(UA) &&
       !/Chrome/.test(UA) &&
       !/Edg/.test(UA) &&
+       // @ts-expect-error
       !window.MSStream;
     if (isWebkit) {
       // We do this because Safari does not always throw when this happens.
