@@ -1,24 +1,10 @@
 import { CSSResult, unsafeCSS } from "lit";
 import {
-  getBrand,
   getGlobalStyles,
   getGlobalStylesSync,
   isServer,
 } from "./utils.js";
 import "construct-style-sheets-polyfill";
-
-/**
- * Returns a Brand object with top level- and
- * second level domain string.
- *
- *  @see https://developer.mozilla.org/en-US/docs/Glossary/Second-level_Domain
- *  @see https://developer.mozilla.org/en-US/docs/Glossary/TLD
- * @typedef {Object} Brand
- * @property {string} sld - second level domain
- * @property {string} tld - top level domain
- */
-
-const brand = getBrand();
 
 /**
  * Styles object compatible with LitElement.
@@ -31,7 +17,7 @@ const brand = getBrand();
 let styles;
 
 if (isServer()) {
-  const sheets = await getGlobalStyles(brand);
+  const sheets = await getGlobalStyles();
   styles = unsafeCSS(sheets.css);
 } else {
   styles = new CSSStyleSheet();
@@ -52,11 +38,11 @@ if (isServer()) {
     }
     // Block on fetching styles. This will throw in older browsers that don't support top level await.
     // They will fall back to a sync XMLHttpRequest.
-    const sheets = await getGlobalStyles(brand);
+    const sheets = await getGlobalStyles();
     styles.replaceSync(sheets.css);
   } catch (err) {
     // we do a synchronous call for browsers which don't suppoert top-level await
-    const sheets = getGlobalStylesSync(brand);
+    const sheets = getGlobalStylesSync();
     styles.replaceSync(sheets.css);
   }
 }
