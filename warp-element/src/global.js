@@ -26,7 +26,7 @@ const brand = getBrand();
  * it will be a CSSStyleSheet object.
  * @see https://lit.dev/docs/components/styles/#cssresult
  *
- * @type {CSSStyleSheet | CSSResult}
+ * @type {(import("lit").CSSResultGroup | import("lit").CSSResult | import("lit").CSSResultOrNative | import("lit").CSSResultArray)}
  */
 let styles;
 
@@ -42,7 +42,7 @@ if (isServer()) {
       /WebKit/.test(UA) &&
       !/Chrome/.test(UA) &&
       !/Edg/.test(UA) &&
-       // @ts-expect-error
+      // @ts-expect-error
       !window.MSStream;
     if (isWebkit) {
       // We do this because Safari does not always throw when this happens.
