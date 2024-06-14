@@ -10,9 +10,12 @@ eik.load().then(() => {
       outfile: "./dist/element.js",
       sourcemap: true,
       minify: true,
-      target: ["es2022"],
-			legalComments: `none`,
-			plugins: [eik.plugin()],
+      supported: {
+        "top-level-await": true, // We're handling the fallback
+      },
+      target: ["es2017"],
+      legalComments: `none`,
+      plugins: [eik.plugin()],
     }),
     build({
       entryPoints: ["./src/global.js"],
@@ -21,9 +24,12 @@ eik.load().then(() => {
       outfile: "./dist/global.js",
       sourcemap: true,
       minify: true,
-      target: ["es2022"],
-			legalComments: `none`,
-			plugins: [eik.plugin()],
+      supported: {
+        "top-level-await": true, // We're handling the fallback
+      },
+      target: ["es2017"],
+      legalComments: `none`,
+      plugins: [eik.plugin()],
     }),
   ]);
 });

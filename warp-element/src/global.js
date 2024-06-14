@@ -1,4 +1,4 @@
-import { unsafeCSS } from "lit";
+import { CSSResult, unsafeCSS } from "lit";
 import {
   getBrand,
   getGlobalStyles,
@@ -50,7 +50,8 @@ if (isServer()) {
       // Safari in certain cases stopping JS execution.
       throw new Error("DoesNotSupportTopLevelAwait");
     }
-    // block on fetching styles. This will throw in older browsers that don't support top level await
+    // Block on fetching styles. This will throw in older browsers that don't support top level await.
+    // They will fall back to a sync XMLHttpRequest.
     const sheets = await getGlobalStyles(brand);
     styles.replaceSync(sheets.css);
   } catch (err) {

@@ -1,0 +1,31 @@
+{
+  "name": "@warp-ds/esbuild-plugin",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/element.js",
+  "types": "./types/element.d.ts",
+  "scripts": {
+    "jsdoc": "tsc",
+    "test": "tap **/*.test.js --disable-coverage",
+    "prepublishOnly": "npm run jsdoc",
+    "postpublish": "eik login && eik publish"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@unocss/core": "0.58.5",
+    "@warp-ds/css": "1.9.2",
+    "@warp-ds/uno": "1.10.2",
+    "browserslist": "4.23.0",
+    "lightningcss": "1.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.27",
+    "@warp-ds/elements-core": "0.0.1-alpha.12",
+    "lit": "2.7.6",
+    "esbuild": "0.20.1",
+    "tap": "18.7.1",
+    "typescript": "5.4.2"
+  }
+}
