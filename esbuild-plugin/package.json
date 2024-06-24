@@ -6,10 +6,9 @@
   "main": "./src/element.js",
   "types": "./types/element.d.ts",
   "scripts": {
-    "jsdoc": "tsc",
+    "types": "tsc",
     "test": "tap **/*.test.js --disable-coverage",
-    "prepublishOnly": "npm run jsdoc",
-    "postpublish": "eik login && eik publish"
+    "prepublishOnly": "npm run types"
   },
   "author": "",
   "license": "MIT",
