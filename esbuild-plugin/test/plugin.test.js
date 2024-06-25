@@ -4,7 +4,7 @@ import test from "node:test";
 import path from "node:path";
 import url from "node:url";
 
-import { plugin } from "../src/plugin.js";
+import plugin from "../src/plugin.js";
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const complex = `${__dirname}/fixtures/complex/component.js`;

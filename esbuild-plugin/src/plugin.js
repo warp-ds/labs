@@ -61,7 +61,7 @@ const buildCSS = async (
  * @param {boolean} [options.minify]
  * @returns object
  */
-export const plugin = ({
+export default ({
   filter = /.*?/,
   placeholder = "@warp-css",
   minify = true,
