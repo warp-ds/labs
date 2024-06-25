@@ -3,8 +3,8 @@
   "type": "module",
   "version": "1.0.0",
   "description": "",
-  "main": "./src/element.js",
-  "types": "./types/element.d.ts",
+  "main": "./src/plugin.js",
+  "types": "./types/plugin.d.ts",
   "scripts": {
     "types": "tsc",
     "test": "tap **/*.test.js --disable-coverage",
