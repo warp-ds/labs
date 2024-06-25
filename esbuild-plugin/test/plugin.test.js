@@ -1,20 +1,48 @@
+import assertSnapshot from "snapshot-assertion";
 import esbuild from 'esbuild';
-import { test } from 'tap';
-import warpCssPlugin from '../src/esbuild-plugin.js';
+import test from "node:test";
+import path from 'node:path';
+import url from 'node:url';
 
-test('does the expected replacement of `@warp-css`', async (t) => {
-  const result = await esbuild.build({
-    entryPoints: ['test/fixtures/Component.js'],
-    bundle: true,
-    plugins: [warpCssPlugin()],
-    format: "esm",
-    write: false,
-  });
+import { plugin } from '../src/plugin.js';
 
-  t.ok(result.outputFiles?.length === 1, 'Expected ESbuild not to fail');
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+const complex = `${__dirname}/fixtures/complex/component.js`;
+const simple = `${__dirname}/fixtures/simple/simple.js`;
 
-  const output = result.outputFiles[0].text;
-  t.match(output, /<p>Hello, World!<\/p>/, 'Expected the contents to include the Component fixture');
+const bufferToString = (buff) => {
+    const str = [];
+    for (let out of buff) {
+        str.push(new TextDecoder("utf-8").decode(out.contents));
+    }
+    return str.join('');
+}
 
-  t.notMatch(output, /@warp-css;/, 'Expected `@warp-css` to be replaced');
+test("plugin() - Simple module structure", async () => {
+    const result = await esbuild.build({
+        entryPoints: [simple],
+        bundle: true,
+        format: 'esm',
+        minify: false,
+        sourcemap: false,
+        plugins: [plugin()],
+        write: false,
+    }); 
+
+    await assertSnapshot(bufferToString(result.outputFiles), "snapshots/warp-1.snapshot");
+});
+
+test("plugin() - Complex module structure", async () => {
+    const result = await esbuild.build({
+        entryPoints: [complex],
+        bundle: true,
+        format: 'esm',
+        minify: false,
+        sourcemap: false,
+        external: ['lit'],
+        plugins: [plugin()],
+        write: false,
+    }); 
+
+    await assertSnapshot(bufferToString(result.outputFiles), "snapshots/warp-2.snapshot");
 });
