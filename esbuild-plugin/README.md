@@ -1,6 +1,6 @@
 # @warp-ds/esbuild-plugin
 
-Used along with [WarpElement](../warp-element/) this ESBuild plugin lets you get a minimal set of UnoCSS utility CSS classes for your `WarpElement.styles` property.
+Used along with [@warp-ds/elements-core](https://github.com/warp-ds/warp-element) this ESBuild plugin lets you get a minimal set of UnoCSS utility CSS classes for your `WarpElement.styles` property.
 
 ## Usage
 
