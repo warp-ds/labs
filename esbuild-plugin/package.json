@@ -5,6 +5,9 @@
   "description": "",
   "main": "./src/plugin.js",
   "types": "./types/plugin.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "types": "tsc",
     "test": "tap **/*.test.js --disable-coverage",
