@@ -81,7 +81,9 @@ export class Tree {
       this._rootNode = node;
     } else {
       if (parent === undefined) {
-        throw new Error("Parent argument must be provided");
+        throw new Error(
+          `Parent argument must be provided when not a root node. This node ${path} has a root node ${this._rootNode}.`
+        );
       }
     }
 
@@ -97,10 +99,14 @@ export class Tree {
 
   tag(path, tag) {
     if (this._tags.has(tag)) {
-      throw new Error("Tag already exist");
+      throw new Error(`Tag ${tag} already exists`);
     }
 
     const node = this._registry.get(path);
+    if (!node) {
+      throw new Error(`No node at path ${path}`);
+    }
+
     node.setTag(tag);
     this._tags.set(tag, node);
   }
@@ -110,7 +116,9 @@ export class Tree {
     if (node) {
       node.setContent(content);
     } else {
-      throw new Error("Not able to set content. No existing node on path.");
+      throw new Error(
+        `Not able to set content. No existing node on path ${path}.`
+      );
     }
   }
 
