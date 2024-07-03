@@ -82,7 +82,7 @@ export class Tree {
     } else {
       if (parent === undefined) {
         throw new Error(
-          `Parent argument must be provided when not a root node. This node ${path} has a root node ${this._rootNode}.`
+          `Parent argument must be provided when not a root node. This node ${path} has a root node ${this._rootNode.getPath()}.`
         );
       }
     }

@@ -24,6 +24,7 @@
     "@types/node": "20.11.27",
     "@warp-ds/elements-core": "0.0.1-alpha.12",
     "esbuild": "0.20.1",
+    "glob": "10.4.2",
     "lit": "2.7.6",
     "snapshot-assertion": "5.0.0",
     "tap": "18.7.1",

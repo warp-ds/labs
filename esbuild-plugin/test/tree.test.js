@@ -218,7 +218,7 @@ test("Tree() - Set duplicate tag", () => {
 
   assert.throws(() => {
     tree.tag("/child.js", "tag");
-  }, /Tag already exist/);
+  }, /Tag tag already exists/);
 });
 
 test("Tree() - Walk the tree - Ignore tags", async () => {
