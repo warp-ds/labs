@@ -63,6 +63,14 @@ export class Tree {
 
   /**
    * @param {string} path
+   * @returns {boolean}
+   */
+  has(path) {
+    return this._registry.has(path);
+  }
+
+  /**
+   * @param {string} path
    * @param {string} [parent]
    * @returns {Node}
    */

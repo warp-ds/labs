@@ -72,8 +72,8 @@ export default ({
     setup(build) {
       // @ts-ignore
 
-      // const options = build.initialOptions;
-      const tree = new Tree();
+      /** @type {Tree[]} */
+      let trees = [];
 
       // On resolve build up a import tree hierarchy of which files
       // import which files in the module structure
@@ -82,11 +82,18 @@ export default ({
         const file = path.resolve(dir, args.path);
 
         if (args.kind === "entry-point") {
+          const tree = new Tree();
           tree.set(file);
+          trees.push(tree);
           return {};
         }
 
-        tree.set(file, args.importer);
+        // The same module can be part of multiple entrypoint's trees
+        for (let tree of trees) {
+          if (tree.has(args.importer)) {
+            tree.set(file, args.importer);
+          }
+        }
 
         return {};
       });
@@ -103,10 +110,18 @@ export default ({
         if (contents.includes(placeholder)) {
           const tag = `@css-placeholder-${nanoid(6)}`;
           contents = contents.replace(placeholder, tag);
-          tree.tag(args.path, tag);
+          for (let tree of trees) {
+            if (tree.has(args.path)) {
+              tree.tag(args.path, tag);
+            }
+          }
         }
 
-        tree.setContent(args.path, contents);
+        for (let tree of trees) {
+          if (tree.has(args.path)) {
+            tree.setContent(args.path, contents);
+          }
+        }
 
         return {
           contents,
@@ -123,25 +138,29 @@ export default ({
       // Then replace the unique tag in the source with the built
       // css for the matching unique tag.
       build.onEnd(async (result) => {
-        const tags = await tree.getContentFromTags();
+        for (let tree of trees) {
+          const tags = await tree.getContentFromTags();
 
-        for await (const tag of tags) {
-          tag.css = await buildCSS(tag.code, { minify });
-        }
+          for await (const tag of tags) {
+            tag.css = await buildCSS(tag.code, { minify });
+          }
 
-        result.outputFiles.forEach((file) => {
-          let source = new TextDecoder("utf-8").decode(file.contents);
+          result.outputFiles.forEach((file) => {
+            let source = new TextDecoder("utf-8").decode(file.contents);
 
-          tags.forEach((tag) => {
-            source = source.replaceAll(tag.tag, tag.css);
+            tags.forEach((tag) => {
+              source = source.replaceAll(tag.tag, tag.css);
+            });
+
+            file.contents = Buffer.from(source);
           });
-
-          file.contents = Buffer.from(source);
-        });
+        }
       });
 
       build.onDispose(() => {
-        tree.clear();
+        for (let tree of trees) {
+          tree.clear();
+        }
       });
     },
   };
