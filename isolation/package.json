@@ -12,8 +12,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@warp-ds/elements-core": "0.0.1-alpha.9",
-    "@hide-in-shadows/html": "0.0.4"
+    "@warp-ds/elements-core": "2.0.0",
+    "@hide-in-shadows/html": "0.0.5"
   },
   "devDependencies": {
     "snapshot-assertion": "5.0.0",
