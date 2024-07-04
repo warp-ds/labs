@@ -2,10 +2,10 @@
 <style>my-wrapped-component:not(:defined) > template[shadowrootmode] ~ *  {opacity:0;visibility:hidden;}</style>
 <my-wrapped-component>
   <template shadowrootmode="open">
-    <style>@import url('https://assets.finn.no/pkg/@warp-ds/fonts/v1/finn-no.css');@import url('https://assets.finn.no/pkg/@warp-ds/css/v1/tokens/finn-no.css');@import url('https://assets.finn.no/pkg/@warp-ds/css/v1/resets.css');@import url('https://assets.finn.no/pkg/@warp-ds/css/v1/components.css');div { background-color: red; }
+    <style>@import url('https://assets.finn.no/pkg/@warp-ds/css/v2/resets.css');@import url('https://assets.finn.no/pkg/@warp-ds/css/v2/components.css');div { background-color: red; }
     </style>
     <div>hello world</div>
   </template>
 </my-wrapped-component>
-<script>!function(){"use strict";document.currentScript?.previousElementSibling&&function e(t){HTMLTemplateElement.prototype.hasOwnProperty("shadowRootMode")||t.querySelectorAll("template[shadowrootmode]").forEach((t=>{const o=t.getAttribute("shadowrootmode"),r=t.hasAttribute("shadowrootdelegatesfocus"),n=t.parentNode.attachShadow({mode:o,delegatesFocus:r});n.appendChild(t.content),t.remove(),e(n)}))}(document.currentScript.previousElementSibling)}();
+<script>(()=>{function e(d){HTMLTemplateElement.prototype.hasOwnProperty("shadowRootMode")||d.querySelectorAll("template[shadowrootmode]").forEach(o=>{let n=o.getAttribute("shadowrootmode"),s=o.hasAttribute("shadowrootdelegatesfocus"),t=o.parentNode.attachShadow({mode:n,delegatesFocus:s});t.appendChild(o.content),o.remove(),e(t)})}var r;(r=document.currentScript)!=null&&r.previousElementSibling&&e(document.currentScript.previousElementSibling);})();
 </script>
