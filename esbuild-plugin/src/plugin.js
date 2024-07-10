@@ -50,7 +50,7 @@ const buildCSS = async (
   });
   output = code.toString();
 
-  // may not need this??
+  // replace \ with \\ so \ doesn't disappear in the conversion to a JS string from ex. lg\:text-left
   return output.replace(/\\/g, "\\\\");
 };
 
