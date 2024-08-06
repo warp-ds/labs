@@ -3,6 +3,7 @@ import esbuild from "esbuild";
 import test from "node:test";
 import path from "node:path";
 import url from "node:url";
+import * as glob from "glob";
 
 import plugin from "../src/plugin.js";
 
@@ -50,5 +51,44 @@ test("plugin() - Complex module structure", async () => {
   await assertSnapshot(
     bufferToString(result.outputFiles),
     "snapshots/warp-2.snapshot"
+  );
+});
+
+test("plugin() - multiple entrypoints (server-side rendering)", async () => {
+  const ssrClientEntry = `${__dirname}/fixtures/ssr/client/client.js`;
+  const ssrServerGlob = `${__dirname}/fixtures/ssr/**/*.js`;
+
+  const clientResult = await esbuild.build({
+    entryPoints: [ssrClientEntry],
+    bundle: true,
+    format: "esm",
+    minify: false,
+    sourcemap: false,
+    external: ["lit"],
+    plugins: [plugin()],
+    write: false,
+  });
+
+  await assertSnapshot(
+    bufferToString(clientResult.outputFiles),
+    "snapshots/warp-3.snapshot"
+  );
+
+  const files = glob.sync(ssrServerGlob);
+  const serverResult = await esbuild.build({
+    entryPoints: files,
+    bundle: false,
+    format: "esm",
+    minify: false,
+    platform: "node",
+    sourcemap: false,
+    plugins: [plugin()],
+    outdir: ".tap",
+    write: false,
+  });
+
+  await assertSnapshot(
+    bufferToString(serverResult.outputFiles),
+    "snapshots/warp-4.snapshot"
   );
 });
