@@ -7,3 +7,5 @@ dist
 warp-element/types
 warp-element/index.d.ts
 eikons/.eik/
+.DS_Store
+mitosis/packages/
